@@ -1,0 +1,11 @@
+﻿  laby1obi.cpp
+C:\Users\barte\source\repos\laby1obi\laby1obi\laby1obi.cpp(120,49): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\barte\source\repos\laby1obi\laby1obi\laby1obi.cpp(123,72): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\barte\source\repos\laby1obi\laby1obi\laby1obi.cpp(126,49): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\barte\source\repos\laby1obi\laby1obi\laby1obi.cpp(129,63): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\barte\source\repos\laby1obi\laby1obi\laby1obi.cpp(134,33): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\barte\source\repos\laby1obi\laby1obi\laby1obi.cpp(134,24): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\barte\source\repos\laby1obi\laby1obi\laby1obi.cpp(395,30): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
+  laby1obi.vcxproj -> C:\Users\barte\source\repos\laby1obi\x64\Debug\laby1obi.exe
+  'pwsh.exe' is not recognized as an internal or external command,
+  operable program or batch file.
