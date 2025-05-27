@@ -59,6 +59,22 @@ public:
 		DrawPolyLines(pos, sides, radius, rot, WHITE);
 	}
 
+	void DrawCross(const Vector2& pos, float size, float rot) {
+		float thickness = size * 0.3f;
+		float length = size * 1.2f;
+		DrawRectanglePro(
+			{ pos.x, pos.y, thickness, length },
+			{ thickness / 2, length / 2 },
+			rot, GREEN
+		);
+		DrawRectanglePro(
+			{ pos.x, pos.y, length, thickness },
+			{ length / 2, thickness / 2 },
+			rot, GREEN
+
+		);
+	}
+
 	int Width() const {
 		return screenW;
 	}
@@ -179,9 +195,17 @@ public:
 		Renderer::Instance().DrawPoly(transform.position, 5, GetRadius(), transform.rotation);
 	}
 };
+class HealingAsteroid : public Asteroid {
+public:
+	HealingAsteroid(int w, int h) : Asteroid(w, h) { baseDamage = -1; }
+	void Draw() const override {
+		Renderer::Instance().DrawCross(transform.position, GetRadius(), transform.rotation);
+	}
+};
 
 // Shape selector
-enum class AsteroidShape { TRIANGLE = 3, SQUARE = 4, PENTAGON = 5, RANDOM = 0 };
+enum class AsteroidShape { TRIANGLE = 3, SQUARE = 4, PENTAGON = 5, HEALING = 6, RANDOM = 0 };
+
 
 // Factory
 static inline std::unique_ptr<Asteroid> MakeAsteroid(int w, int h, AsteroidShape shape) {
@@ -192,6 +216,8 @@ static inline std::unique_ptr<Asteroid> MakeAsteroid(int w, int h, AsteroidShape
 		return std::make_unique<SquareAsteroid>(w, h);
 	case AsteroidShape::PENTAGON:
 		return std::make_unique<PentagonAsteroid>(w, h);
+	case AsteroidShape::HEALING:
+        return std::make_unique<HealingAsteroid>(w, h);
 	default: {
 		return MakeAsteroid(w, h, static_cast<AsteroidShape>(3 + GetRandomValue(0, 2)));
 	}
@@ -454,6 +480,9 @@ public:
 				currentShape = AsteroidShape::PENTAGON;
 			}
 			if (IsKeyPressed(KEY_FOUR)) {
+				currentShape = AsteroidShape::HEALING;
+			}
+			if (IsKeyPressed(KEY_FIVE)) {
 				currentShape = AsteroidShape::RANDOM;
 			}
 
@@ -590,7 +619,7 @@ private:
 	AsteroidShape currentShape = AsteroidShape::TRIANGLE;
 
 	static constexpr int C_WIDTH = 1600;
-	static constexpr int C_HEIGHT = 1600;
+	static constexpr int C_HEIGHT = 1000;
 	static constexpr size_t MAX_AST = 150;
 	static constexpr float C_SPAWN_MIN = 0.5f;
 	static constexpr float C_SPAWN_MAX = 3.0f;
